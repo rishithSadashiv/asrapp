@@ -1,0 +1,20 @@
+<p>homepage works!</p>
+
+<div class="toolbar" role="banner">
+  <img width="40" alt="Angular Logo" src="../../../assets/iitdh_logo.png" />
+  <span>Hindi ASR</span>
+</div>
+
+<div class="content" role="main">
+  <div class="card-container">
+    <div class="card card-small" (click)="startRecording()" tabindex="0">
+      <span>Start</span>
+    </div>
+
+    <div class="card card-small" (click)="stopRecording()" tabindex="0">
+      <span>Stop</span>
+    </div>
+  </div>
+
+  <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>

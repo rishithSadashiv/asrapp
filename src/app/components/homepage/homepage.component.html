@@ -7,14 +7,32 @@
 
 <div class="content" role="main">
   <div class="card-container">
-    <div class="card card-small" (click)="startRecording()" tabindex="0">
-      <span>Start</span>
+    <div class="card " tabindex="0">
+      
+      <input type="file" id="file" (change)="uploadFile($event.target.files)">
     </div>
-
-    <div class="card card-small" (click)="stopRecording()" tabindex="0">
-      <span>Stop</span>
+    
+    <div class="card " (click)="deleteFile()" tabindex="0">
+      <span>Delete</span>
+    </div>
+    
+  </div>
+  <div class="row">
+    <div class="col-1">
+      <span *ngIf="uploadSuccessfulShow">Upload Successful</span>
+    </div>
+    <div class="col-1">
+      <span *ngIf="deleteSuccessfulShow">Delete Successful</span>
     </div>
   </div>
+  <div class="card-container ">
+    <div class="card card-small" (click)="transcribeAudio()" tabindex="0">
+      <span>Transcribe</span>
+    </div>
+  </div>
+  <div class="card-container">
+    <b > {{this.transcribedText}} </b>
+  </div>
+  
 
-  <mat-progress-bar mode="buffer"></mat-progress-bar>
 </div>

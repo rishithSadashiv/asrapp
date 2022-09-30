@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,17 +8,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  file: File | null = null;
+  uploadSuccessfulShow = false;
+  deleteSuccessfulShow = false;
+  transcribedText = "";
+
+  constructor(private fileService: FileService) { }
 
   ngOnInit(): void {
   }
 
-  startRecording(){
-    console.log('inside start recording');
+  uploadFile(files: FileList) {
+    this.deleteSuccessfulShow = false;
+    this.transcribedText = "";
+    this.file = files.item(0);
+    this.fileService.uploadFile(this.file).subscribe(result => {
+      if (result) {
+        this.uploadSuccessfulShow = true;
+      }
+    });
+    
   }
 
-  stopRecording(){
-    console.log('inside stop recording');
+  deleteFile() {
+    this.transcribedText = "";
+    this.uploadSuccessfulShow = false;
+    this.fileService.deleteFiles().subscribe(result => {
+      if (result) {
+        this.deleteSuccessfulShow = true;
+      }
+    });
+
+  }
+
+  transcribeAudio() {
+    this.uploadSuccessfulShow = false;
+    this.deleteSuccessfulShow = false;
+    this.fileService.transcribe().subscribe(result => {
+      this.transcribedText = result.Value;
+    });
+
   }
 
 }

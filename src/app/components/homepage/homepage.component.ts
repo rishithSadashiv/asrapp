@@ -11,7 +11,8 @@ export class HomepageComponent implements OnInit {
   file: File | null = null;
   uploadSuccessfulShow = false;
   deleteSuccessfulShow = false;
-  transcribedText = "";
+  transcribedText = "हम यह कुछ उदाहरण उपयोग करके करेंगे";
+  translatedText = "ಕೆಲವು ಉದಾಹರಣೆಗಳನ್ನು ಬಳಸಿಕೊಂಡು ನಾವು ಇದನ್ನು ಮಾಡುತ್ತೇವೆ"
 
   constructor(private fileService: FileService) { }
 
